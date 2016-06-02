@@ -1,0 +1,181 @@
+---
+spring:
+  profiles:
+      active: QA
+---
+spring:
+    profiles: dev
+
+    jpa:
+        # Show or not log for each sql query
+        show-sql: true
+        hibernate:
+             # Hibernate ddl auto (create, create-drop, update)
+             ddl-auto: create
+             # Naming strategy
+             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+        properties:
+             hibernate:
+                 # The SQL dialect makes Hibernate generate better SQL for the chosen database
+                 dialect: org.hibernate.dialect.MySQL5Dialect
+
+             jadira:
+               usertype:
+                   # Enable JPA to use Joda Time library
+                   autoRegisterUserTypes: true
+                   # Enable the currency for the JPA to create the table
+                   currencyCode: ZAR
+
+server:
+    port: 9999
+
+keystore:
+    file: src/main/resources/selpal.p12
+    password: selpal
+    type: PKCS12
+    alias: tomcat
+
+eureka:
+   password: selpal
+   instance:
+       preferIpAddress: true
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://user:${eureka.password}@discovery-service:8761/eureka/
+     registryFetchIntervalSeconds: 5
+
+tomcat:
+  jdbc:
+    pool:
+      url: jdbc:mysql://selpaldb:3308/users
+      username: root
+      password: selpal
+      initial-size: 5
+      test-on-borrow: true
+      test-while-idle: true
+      validation-query: SELECT 1
+      driver-class-name: com.mysql.jdbc.Driver
+      max_size: 50
+      min_size: 5
+
+---
+spring:
+    profiles: QA
+
+    jpa:
+        # Show or not log for each sql query
+        show-sql: true
+        hibernate:
+             # Hibernate ddl auto (create, create-drop, update)
+             ddl-auto: update
+             # Naming strategy
+             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+        properties:
+             hibernate:
+                 # The SQL dialect makes Hibernate generate better SQL for the chosen database
+                 dialect: org.hibernate.dialect.MySQL5Dialect
+
+             jadira:
+               usertype:
+                   # Enable JPA to use Joda Time library
+                   autoRegisterUserTypes: true
+                   # Enable the currency for the JPA to create the table
+                   currencyCode: ZAR
+
+server:
+    port: 9999
+
+keystore:
+    file: selpal.p12
+    password: selpal
+    type: PKCS12
+    alias: tomcat
+
+eureka:
+   password: selpal
+   instance:
+       preferIpAddress: true
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://user:${eureka.password}@discovery-service:8761/eureka/
+     registryFetchIntervalSeconds: 5
+
+tomcat:
+  jdbc:
+    pool:
+      url: jdbc:mysql://selpaldb:3308/users
+      username: root
+      password: selpal
+      initial-size: 5
+      test-on-borrow: true
+      test-while-idle: true
+      validation-query: SELECT 1
+      driver-class-name: com.mysql.jdbc.Driver
+      max_size: 50
+      min_size: 5
+---
+spring:
+    profiles: prod
+
+    jpa:
+        # Show or not log for each sql query
+        show-sql: true
+        hibernate:
+             # Hibernate ddl auto (create, create-drop, update)
+             ddl-auto: update
+             # Naming strategy
+             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+        properties:
+             hibernate:
+                 # The SQL dialect makes Hibernate generate better SQL for the chosen database
+                 dialect: org.hibernate.dialect.MySQL5Dialect
+
+             jadira:
+               usertype:
+                   # Enable JPA to use Joda Time library
+                   autoRegisterUserTypes: true
+                   # Enable the currency for the JPA to create the table
+                   currencyCode: ZAR
+
+server:
+    port: 9999
+
+keystore:
+    file: selpal.p12
+    password: selpal
+    type: PKCS12
+    alias: tomcat
+
+eureka:
+   password: selpal
+   instance:
+       preferIpAddress: true
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://user:${eureka.password}@discovery-service:8761/eureka/
+     registryFetchIntervalSeconds: 5
+
+tomcat:
+  jdbc:
+    pool:
+      url: jdbc:mysql://selpaldb:3308/users
+      username: root
+      password: selpal
+      initial-size: 5
+      test-on-borrow: true
+      test-while-idle: true
+      validation-query: SELECT 1
+      driver-class-name: com.mysql.jdbc.Driver
+      max_size: 50
+      min_size: 5
+
+---
