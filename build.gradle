@@ -68,7 +68,7 @@ task createDockerfile(type: Dockerfile) {
 	// Regarding settings of java.security.egd, see http://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source
 	//entryPoint 'java','-Djavax.net.ssl.trustStore=/selpal.p12','-Djavax.net.ssl.trustStoreType=PKCS12','-Djavax.net.ssl.trustStorePassword=selpal','-jar',"${jar.baseName}-${jar.version}.jar"
 	//entryPoint 'java','-Dspring.profiles.active=QA','-Djavax.net.ssl.trustStore=/selpal.p12','-Djavax.net.ssl.trustStoreType=PKCS12','-Djavax.net.ssl.trustStorePassword=selpal','-jar',"${jar.baseName}-${jar.version}.jar"
-	entryPoint 'java','-jar',"-Dspring.profiles.active=$env","${Jar.baseName}-${Jar.version}.jar"
+	entryPoint 'java','-jar',"-Dspring.profiles.active=$env","${jar.baseName}-${jar.version}.jar"
 }
 
 task wrapper(type: Wrapper) {

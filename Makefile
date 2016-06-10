@@ -23,7 +23,7 @@ UAT: UAT-REPO uat-clean-and-build
 PROD: PROD-REPO prod-clean-and-build
  
 DEV-REPO:
-	echo 'Running build for QA...' && git checkout secure-master
+	echo 'Running build for QA...' && git checkout dev_Oauth
  
 QA-REPO:
 	echo 'Running build for QA...' && git checkout secure-master
