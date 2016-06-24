@@ -1,7 +1,7 @@
 ---
 spring:
   profiles:
-      active: QA
+      active: dev
 ---
 spring:
     profiles: dev
@@ -50,9 +50,9 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://selpaldb:3308/users
+      url: jdbc:mysql://dbtut:3306/loyalty
       username: root
-      password: selpal
+      password: root
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true
@@ -109,9 +109,9 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://52.51.245.241:3308/users
+      url: jdbc:mysql://selpaldb:3306/users
       username: root
-      password: selpal
+      password: root
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true
@@ -167,9 +167,9 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://selpaldb:3308/users
+      url: jdbc:mysql://selpaldb:3306/users
       username: root
-      password: selpal
+      password: root
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true

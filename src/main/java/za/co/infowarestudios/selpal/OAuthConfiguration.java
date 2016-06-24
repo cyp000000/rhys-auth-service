@@ -150,9 +150,9 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 				.and()
 				//Below token is an all access token. TODO: Introduce proper token handling
 				.withClient("trust_client")
-				.resourceIds(new String[] {"user_api","store_api","wallet_balances_api","shop_api","transactions_api","ussd_api","lotto_star_api"})
+				.resourceIds(new String[] {"user_api","store_api","wallet_balances_api","shop_api","transactions_api","ussd_api","lotto_star_api","withdrawal_api,notifications_api"})
 				.authorities("TRUSTED_CLIENT")
-				.scopes("login","read","register","balances","shop","get_all_operators","deactivate_operator","activate_operator","checkout","withdrawal","reset_password","deposit","transfer","get_merchant","get_store")
+				.scopes("login","read","register","balances","shop","get_all_operators","deactivate_operator","activate_operator","checkout","withdrawal","reset_password","deposit","transfer","get_merchant","get_store","notifications")
 				.authorizedGrantTypes("password","refresh_token","implicit","client_credentials")
 				.secret("IDdjJBJ09UOaqB2BXHCz19BWJvaCWRZCwWTbmrfojlE=")
 				.accessTokenValiditySeconds(60*10080)     //Valid for one week
