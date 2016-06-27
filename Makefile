@@ -35,13 +35,13 @@ PROD-REPO:
 	echo 'Running build for QA...' && git checkout prod-master
  
 dev-clean-and-build:
-	@./gradlew clean build -x test createDockerfile && cd ./build && echo "build" && docker build -t $(image_name):secure . && cd ../
+	@./gradlew clean build -x test createDockerfile -Penv=dev && cd ./build && echo "build" && docker build -t $(image_name):secure . && cd ../
  
 qa-clean-and-build:
-	@gradle clean build -x test createDockerfile && cd ./build && echo "build" && docker build -t $(image_name):secure . && cd ../
+	@gradle clean build -x test createDockerfile -Penv=QA && cd ./build && echo "build" && docker build -t $(image_name):secure . && cd ../
  
 uat-clean-and-build:
-	@gradle clean build -x test createDockerfile && cd ./build && echo "build" && docker build -t $(image_name):uat . && cd ../
+	@gradle clean build -x test createDockerfile -Penv=QA && cd ./build && echo "build" && docker build -t $(image_name):uat . && cd ../
  
 prod-clean-and-build:
-	@gradle clean build -x test createDockerfile && cd ./build && echo "build" && docker build -t $(image_name):prod . && cd ../
+	@gradle clean build -x test createDockerfile -Penv=prod && cd ./build && echo "build" && docker build -t $(image_name):prod . && cd ../
