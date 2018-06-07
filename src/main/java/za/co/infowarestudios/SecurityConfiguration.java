@@ -1,4 +1,4 @@
-package za.co.infowarestudios.selpal;
+package za.co.infowarestudios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import za.co.infowarestudios.selpal.authentication.CustomUserDetailsService;
+import za.co.infowarestudios.authentication.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

@@ -1,7 +1,4 @@
-package za.co.infowarestudios.selpal.entity;
-
-import java.util.HashSet;
-import java.util.Set;
+package za.co.infowarestudios.entity;
 
 /**
  * Created by victorrikhotso on 2016/01/29.

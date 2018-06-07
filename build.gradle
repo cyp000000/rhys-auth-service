@@ -47,7 +47,7 @@ dependencies {
 	compile("org.jadira.usertype:usertype.core:4.0.0.GA")
 	compile("joda-time:joda-time")
 	runtime("mysql:mysql-connector-java")
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 def dockerPort = 9999
@@ -57,18 +57,15 @@ import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 task createDockerfile(type: Dockerfile) {
 	destFile = project.file('build/Dockerfile')
 	from 'ofayau/ejre:8-jre'
-	maintainer 'Victor Rikhotso <victor@infowarestudios.co.za>'
+	maintainer 'Jomo Lumina <jomo@infowarestudios.co.za>'
 	exposePort dockerPort
 	copyFile "libs/${jar.baseName}-${jar.version}.jar", "${jar.baseName}-${jar.version}.jar"
-	copyFile 'resources/main/selpal.p12', 'selpal.p12'
+	copyFile 'resources/main/infoware.p12', 'infoware.p12'
 
 	environmentVariable "TZ","Africa/Johannesburg"
 	runCommand("ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime && echo \$TZ > /etc/timezone")
 
-	// Regarding settings of java.security.egd, see http://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source
-	//entryPoint 'java','-Djavax.net.ssl.trustStore=/selpal.p12','-Djavax.net.ssl.trustStoreType=PKCS12','-Djavax.net.ssl.trustStorePassword=selpal','-jar',"${jar.baseName}-${jar.version}.jar"
-	//entryPoint 'java','-Dspring.profiles.active=QA','-Djavax.net.ssl.trustStore=/selpal.p12','-Djavax.net.ssl.trustStoreType=PKCS12','-Djavax.net.ssl.trustStorePassword=selpal','-jar',"${jar.baseName}-${jar.version}.jar"
-	entryPoint 'java','-jar',"-Dspring.profiles.active=$env","${jar.baseName}-${jar.version}.jar"
+	entryPoint 'java','-jar',"-Dspring.profiles.active=dev","${jar.baseName}-${jar.version}.jar"
 }
 
 task wrapper(type: Wrapper) {

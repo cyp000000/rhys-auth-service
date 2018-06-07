@@ -1,13 +1,13 @@
-package za.co.infowarestudios.selpal.authentication;
+package za.co.infowarestudios.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.co.infowarestudios.selpal.entity.AuthenticateUser;
-import za.co.infowarestudios.selpal.entity.User;
-import za.co.infowarestudios.selpal.repositories.UserRepository;
+import za.co.infowarestudios.entity.User;
+import za.co.infowarestudios.repositories.UserRepository;
+import za.co.infowarestudios.entity.AuthenticateUser;
 
 /**
- * Created by victorrikhotso on 2016/01/29.
+ * Created by Jomo Lumina on 2018/06/05.
  */
 @Service
 public class AuthenticationService {

@@ -1,4 +1,4 @@
-package za.co.infowarestudios.selpal.config;
+package za.co.infowarestudios.config;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Created by victorrikhotso on 2016/03/31.
+ * Created by Jomo Lumina on 2018/06/05.
  */
 @Configuration
 @EnableTransactionManagement

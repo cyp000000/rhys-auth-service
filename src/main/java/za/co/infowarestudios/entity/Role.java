@@ -1,4 +1,4 @@
-package za.co.infowarestudios.selpal.entity;
+package za.co.infowarestudios.entity;
 
 import javax.persistence.*;
 

@@ -31,28 +31,28 @@ server:
     port: 9999
 
 keystore:
-    file: src/main/resources/selpal.p12
-    password: selpal
+    file: src/main/resources/infoware.p12
+    password: infoware
     type: PKCS12
     alias: tomcat
 
 eureka:
-   password: selpal
+   password: infoware
    instance:
        preferIpAddress: true
    client:
      registerWithEureka: true
      fetchRegistry: true
      serviceUrl:
-       defaultZone: http://user:${eureka.password}@discovery-service:8761/eureka/
+       defaultZone: http://user:${eureka.password}@localhost:8761/eureka/
      registryFetchIntervalSeconds: 5
 
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://dbtut:3306/loyalty
+      url: jdbc:mysql://localhost:3306/rhys_limited
       username: root
-      password: root
+      password: infoware
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true
@@ -90,13 +90,13 @@ server:
     port: 9999
 
 keystore:
-    file: selpal.p12
-    password: selpal
+    file: infoware.p12
+    password: infoware
     type: PKCS12
     alias: tomcat
 
 eureka:
-   password: selpal
+   password: infoware
    instance:
        preferIpAddress: true
    client:
@@ -109,9 +109,9 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://womlersdb:3306/users
+      url: jdbc:mysql://rhys-limited:3306/rhys_limited
       username: root
-      password: selpal
+      password: infoware
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true
@@ -148,13 +148,13 @@ server:
     port: 9999
 
 keystore:
-    file: selpal.p12
-    password: selpal
+    file: infoware.p12
+    password: infoware
     type: PKCS12
     alias: tomcat
 
 eureka:
-   password: selpal
+   password: rhys
    instance:
        preferIpAddress: true
    client:
@@ -167,9 +167,9 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://womlersdb:3306/users
+      url: jdbc:mysql://rhys-limited:3306/rhys_limited
       username: root
-      password: selpal
+      password: rhys
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true

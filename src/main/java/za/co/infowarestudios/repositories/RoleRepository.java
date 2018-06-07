@@ -1,10 +1,10 @@
-package za.co.infowarestudios.selpal.repositories;
+package za.co.infowarestudios.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import za.co.infowarestudios.selpal.entity.Role;
+import za.co.infowarestudios.entity.Role;
 
 /**
- * Created by chrismipi on 2015/12/23.
+ * Created by Jomo Lumina on 2018/06/05.
  */
 public interface RoleRepository extends CrudRepository<Role,Long> {
 	Role findByRoleName(String roleName);
