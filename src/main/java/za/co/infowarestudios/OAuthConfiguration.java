@@ -63,6 +63,21 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 				.secret("IDdjJBJ09UOaqB2BXHCz19BWJvaCWRZCwWTbmrfojlE=")
 				.accessTokenValiditySeconds(60*10080)     //Valid for one week
 				.refreshTokenValiditySeconds(60*60*24)
-				.and();
+				.and()
+				.withClient("trust_web_admin")
+				.resourceIds(new String[] {"user_api","product_api","shop_api","transactions_api"})
+				.authorities("TRUSTED_WEB_ADMIN")
+				.scopes("login","read","register","balances","shop","deactivate_operator", "activate_operator")
+				.authorizedGrantTypes("client_credentials")
+				.secret("infoware-admin")
+				.accessTokenValiditySeconds(60*30)
+				.and()
+				.withClient("any_user")                   // Client that allows mobile user to check login details (must be initialized)
+				.resourceIds("user_api")
+				.authorities("UNKNOWN_USER")
+				.scopes("login","read","reset_password","shop")
+				.authorizedGrantTypes("client_credentials")
+				.secret("anyuser")
+				.accessTokenValiditySeconds(60*30);
 	}
 }

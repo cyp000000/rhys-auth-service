@@ -57,6 +57,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		public Collection<? extends GrantedAuthority> getAuthorities() {
 			List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 			authorities.add(new SimpleGrantedAuthority("TRUSTED_CLIENT"));
+			authorities.add(new SimpleGrantedAuthority("TRUSTED_WEB_ADMIN"));
+			authorities.add(new SimpleGrantedAuthority("UNKNOWN_USER"));
 			return authorities;
 		}
 
