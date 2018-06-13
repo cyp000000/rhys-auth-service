@@ -99,9 +99,6 @@ public class User {
 	}
 
 	public Role getRole() {
-		this.role = new Role();
-		this.role.setId(1);
-		this.role.setDescription("admin");
 		return role;
 	}
 
