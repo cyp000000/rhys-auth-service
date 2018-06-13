@@ -109,7 +109,7 @@ eureka:
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://52.30.160.174:3306/rhys_limited
+      url: jdbc:mysql://52.30.160.174:3306/users
       username: root
       password: infoware
       initial-size: 5

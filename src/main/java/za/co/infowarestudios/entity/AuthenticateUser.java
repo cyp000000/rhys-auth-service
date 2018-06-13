@@ -11,6 +11,7 @@ public class AuthenticateUser {
 	private long role;
 
 	public String getUserId() {
+		userId = "admin";
 		return userId;
 	}
 
@@ -19,6 +20,7 @@ public class AuthenticateUser {
 	}
 
 	public String getLogin() {
+		login = "admin";
 		return login;
 	}
 
@@ -27,6 +29,7 @@ public class AuthenticateUser {
 	}
 
 	public String getPassword() {
+		password = "admin";
 		return password;
 	}
 
