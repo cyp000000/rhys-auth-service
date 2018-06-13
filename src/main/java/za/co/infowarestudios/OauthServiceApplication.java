@@ -26,7 +26,7 @@ import java.io.FileNotFoundException;
 @EnableDiscoveryClient
 public class OauthServiceApplication {
 
-	@RequestMapping("/user")
+	@RequestMapping("/users")
 	@ResponseBody
 	public Authentication user(Authentication user) {
 		return user;

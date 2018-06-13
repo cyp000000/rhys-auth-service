@@ -56,19 +56,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
 			List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority("TRUSTED_MOBILE"));
-			switch ((int)super.getRole()){
-				case 1:	authorities.add(new SimpleGrantedAuthority("TRUSTED_MERCHANT"));
-					break;
-				case 2: authorities.add(new SimpleGrantedAuthority("TRUSTED_OPERATOR"));
-					break;
-//				case 3: authorities.add(new SimpleGrantedAuthority("TRUSTED_MOBILE"));
-//					break;
-				case 4: authorities.add(new SimpleGrantedAuthority("TRUSTED_CUSTOMER"));
-					break;
-				case 5: authorities.add(new SimpleGrantedAuthority("TRUSTED_FIELD_USER"));
-					break;
-			}
+			authorities.add(new SimpleGrantedAuthority("TRUSTED_CLIENT"));
 			return authorities;
 		}
 

@@ -13,7 +13,7 @@ import za.co.infowarestudios.entity.AuthenticateUser;
 public class AuthenticationService {
 
 	/**
-	 * Send the request to the user-management service to authentiate the actual user
+	 * Send the request to the user-management service to authenticate the actual user
 	 * @param userId
 	 * @return user
 	 */
