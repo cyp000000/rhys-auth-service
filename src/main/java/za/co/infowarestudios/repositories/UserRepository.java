@@ -8,6 +8,6 @@ import za.co.infowarestudios.entity.User;
  */
 public interface UserRepository extends CrudRepository<User,Long> {
 
-	public User findUserByUserId(String userId);
+	User findByUserId(String userId);
 
 }

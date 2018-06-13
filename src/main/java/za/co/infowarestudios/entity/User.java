@@ -22,12 +22,9 @@ public class User {
 	@Column
 	private String emailAddress;
 
-	@Column
-	private String firstName;
-
 	@JsonIgnore
 	@Column
-	private String pin;
+	private String password;
 
 	@ManyToOne
 	@PrimaryKeyJoinColumn
@@ -45,38 +42,26 @@ public class User {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="CAT")
 	private DateTime modified;
 
-	@Column(unique = true)
-	private String contact;
-
-	@Column
-	private String lastName;
-
-	@Column(unique = true)
-	private String identificationNumber;
 
 	public User() {
 	}
 
-	public User(String userId, String emailAddress, String pin, String firstName, Role role) {
+	public User(String userId, String emailAddress, String password, Role role) {
 		this.userId = userId;
 		this.emailAddress = emailAddress;
-		this.pin = pin;
+		this.password = password;
 		this.role = role;
 		this.active = false;
-		this.firstName = firstName;
 		this.created = new DateTime();
 		this.modified = new DateTime();
 	}
 
-	public User(String userId, String emailAddress, String firstName, String lastName, String contact, Role role) {
+	public User(String userId, String emailAddress, Role role) {
 		this.userId = userId;
 		this.emailAddress = emailAddress;
-		this.firstName = firstName;
-		this.lastName = lastName;
 		this.role = role;
-		this.contact = contact;
 		this.active = false;
-		this.pin = ""; // this is the default PIN
+		this.password = ""; // this is the default PIN
 		this.created = new DateTime();
 		this.modified = new DateTime();
 	}
@@ -87,30 +72,6 @@ public class User {
 
 	public void setEmailAddress(String email) {
 		this.emailAddress = email;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
 	}
 
 	public DateTime getCreated() {
@@ -145,12 +106,12 @@ public class User {
 		this.role = role;
 	}
 
-	public String getPin() {
-		return pin;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPin(String pin) {
-		this.pin = pin;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUserId() {
@@ -159,14 +120,6 @@ public class User {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getIdentificationNumber() {
-		return identificationNumber;
-	}
-
-	public void setIdentificationNumber(String identificationNumber) {
-		this.identificationNumber = identificationNumber;
 	}
 
 }

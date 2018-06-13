@@ -3,7 +3,7 @@ package za.co.infowarestudios.entity;
 import javax.persistence.*;
 
 /**
- * Created by chrismipi on 2015/12/23.
+ * Created by jomolumina on 2018/06/11. 
  */
 @Entity
 public class Role {
@@ -13,21 +13,21 @@ public class Role {
 	private long id;
 
 	@Column
-	private String roleName;
+	private String description;
 
 	public Role() {
 	}
 
-	public Role(String roleName) {
-		this.roleName = roleName;
+	public Role(String description) {
+		this.description = description;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public long getId() {

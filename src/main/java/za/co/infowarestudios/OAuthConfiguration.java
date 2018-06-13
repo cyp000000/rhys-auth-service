@@ -56,7 +56,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 				.withClient("trust_client")
-				.resourceIds(new String[] {"user_api","shop_api","transactions_api","notifications_api"})
+				.resourceIds(new String[] {"user_api","product_api","transaction_api","notification_api"})
 				.authorities("TRUSTED_CLIENT")
 				.scopes("login","read","register","shop","reset_password","deposit","transfer","notifications")
 				.authorizedGrantTypes("password","refresh_token","implicit","client_credentials")

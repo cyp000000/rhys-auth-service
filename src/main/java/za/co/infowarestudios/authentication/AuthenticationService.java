@@ -22,8 +22,8 @@ public class AuthenticationService {
 
 	public AuthenticateUser authenticateUser(final String userId){
 		// Find the user
-		User user = userRepository.findUserByUserId(userId);
-		AuthenticateUser authenticateUser = new AuthenticateUser(user.getUserId(),user.getUserId(),user.getPin());
+		User user = userRepository.findByUserId(userId);
+		AuthenticateUser authenticateUser = new AuthenticateUser(user.getUserId(),user.getUserId(),user.getPassword());
 		authenticateUser.setRole(user.getRole().getId());
 		return authenticateUser;
 	}

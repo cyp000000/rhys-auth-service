@@ -1,13 +1,13 @@
 package za.co.infowarestudios.entity;
 
 /**
- * Created by victorrikhotso on 2016/01/29.
+ ** Created by jomolumina on 2018/06/11. 
  */
 public class AuthenticateUser {
 
-	private String userId; // UserId that the user types in on the mobile app
-	private String login;  // UserId that the user types in on the mobile app
-	private String password; // PIN that the user types in on the mobile app
+	private String userId; // UserId that the user types in on the web app
+	private String login;  // UserId that the user types in on the web app
+	private String password; // PIN that the user types in on the web app
 	private long role;
 
 	public String getUserId() {
