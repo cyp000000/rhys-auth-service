@@ -13,18 +13,21 @@ import za.co.infowarestudios.entity.AuthenticateUser;
 public class AuthenticationService {
 
 	/**
-	 * Send the request to the user-management service to authenticate the actual user
+	 * Send the request to the user-management service to authenticate the actual
+	 * user
+	 * 
 	 * @param userId
 	 * @return user
 	 */
 	@Autowired
 	private UserRepository userRepository;
 
-	public AuthenticateUser authenticateUser(final String userId){
+	public AuthenticateUser authenticateUser(final String userId) {
 		// Find the user
 		User user = userRepository.findByUserId(userId);
-		AuthenticateUser authenticateUser = new AuthenticateUser(user.getUserId(),user.getUserId(),user.getPassword());
-		authenticateUser.setRole(user.getRole().getId());
+		AuthenticateUser authenticateUser = new AuthenticateUser(user.getUserId(), user.getUserId(),
+				user.getPassword());
+		authenticateUser.setRole(user.getRoleBean().getId());
 		return authenticateUser;
 	}
 

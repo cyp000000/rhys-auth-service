@@ -1,113 +1,116 @@
 package za.co.infowarestudios.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.joda.time.DateTime;
+import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 
 /**
- * Created by chrismipi on 2015/12/23.
+ * The persistent class for the user database table.
+ * 
  */
 @Entity
-public class User {
-	@JsonIgnore
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String id;
 
-	@Column(unique = true)
-	private String userId;
+	private byte active;
 
-	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
+
+	@Column(name="email_address")
 	private String emailAddress;
 
-	@JsonIgnore
-	@Column
+	@Column(name="first_time_logged_in")
+	private byte firstTimeLoggedIn;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modified;
+
 	private String password;
 
-	@ManyToOne
-	@PrimaryKeyJoinColumn
-	private Role role;
+	@Column(name="user_id")
+	private String userId;
 
-	@JsonIgnore
-	@Column
-	private Boolean active;
-
-	@JsonIgnore
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="CAT")
-	private DateTime created;
-
-	@JsonIgnore
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone="CAT")
-	private DateTime modified;
-
+	//bi-directional many-to-one association to Role
+	@ManyToOne(fetch = FetchType.LAZY)
+	//@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name="role")
+	private Role roleBean;
 
 	public User() {
 	}
 
-	public User(String userId, String emailAddress, String password, Role role) {
-		this.userId = userId;
-		this.emailAddress = emailAddress;
-		this.password = password;
-		this.role = role;
-		this.active = false;
-		this.created = new DateTime();
-		this.modified = new DateTime();
+	public String getId() {
+		return this.id;
 	}
 
-	public User(String userId, String emailAddress, Role role) {
-		this.userId = userId;
-		this.emailAddress = emailAddress;
-		this.role = role;
-		this.active = false;
-		this.password = ""; // this is the default PIN
-		this.created = new DateTime();
-		this.modified = new DateTime();
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public byte getActive() {
+		return this.active;
 	}
 
-	public void setEmailAddress(String email) {
-		this.emailAddress = email;
-	}
-
-	public DateTime getCreated() {
-		return created;
-	}
-
-	public DateTime getModified() {
-		return modified;
-	}
-
-	public void setModified(DateTime modified) {
-		this.modified = modified;
-	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
+	public void setActive(byte active) {
 		this.active = active;
 	}
 
-	public long getId() {
-		return id;
+	public Date getCreated() {
+		return this.created;
 	}
 
-	public Role getRole() {
-		return role;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public byte getFirstTimeLoggedIn() {
+		return this.firstTimeLoggedIn;
+	}
+
+	public void setFirstTimeLoggedIn(byte firstTimeLoggedIn) {
+		this.firstTimeLoggedIn = firstTimeLoggedIn;
+	}
+
+	public Date getModified() {
+		return this.modified;
+	}
+
+	public void setModified(Date modified) {
+		this.modified = modified;
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -115,11 +118,19 @@ public class User {
 	}
 
 	public String getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public Role getRoleBean() {
+		return this.roleBean;
+	}
+
+	public void setRoleBean(Role roleBean) {
+		this.roleBean = roleBean;
 	}
 
 }

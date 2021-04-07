@@ -1,5 +1,7 @@
 package za.co.infowarestudios.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import za.co.infowarestudios.entity.User;
 
@@ -9,5 +11,6 @@ import za.co.infowarestudios.entity.User;
 public interface UserRepository extends CrudRepository<User,Long> {
 
 	User findByUserId(String userId);
+	Optional<User> findByEmailAddress(String userPhoneNumber);
 
 }

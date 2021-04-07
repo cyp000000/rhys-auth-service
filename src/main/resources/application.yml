@@ -1,7 +1,7 @@
 ---
 spring:
   profiles:
-      active: QA
+      active: prod
 ---
 spring:
     profiles: dev
@@ -28,7 +28,7 @@ spring:
                    currencyCode: ZAR
 
 server:
-    port: 9999
+    port: 9099
 
 keystore:
     file: src/main/resources/infoware.p12
@@ -87,7 +87,7 @@ spring:
                    currencyCode: ZAR
 
 server:
-    port: 9999
+    port: 9099
 
 keystore:
     file: infoware.p12
@@ -128,7 +128,7 @@ spring:
         show-sql: true
         hibernate:
              # Hibernate ddl auto (create, create-drop, update)
-             ddl-auto: update
+             ddl-auto: none
              # Naming strategy
              naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
@@ -145,31 +145,53 @@ spring:
                    currencyCode: ZAR
 
 server:
-    port: 9999
+    port: 9099
 
 keystore:
-    file: infoware.p12
-    password: infoware
+    file: D:\\rhys-certificate-activity\\server.p12
+    #file: /root/project_rhys/project_rhys_phase2/auth-service/server.p12
+    password: changeit
     type: PKCS12
-    alias: tomcat
+    #alias: tomcat
 
 eureka:
-   password: rhys
+   password: infoware
    instance:
        preferIpAddress: true
    client:
-     registerWithEureka: true
-     fetchRegistry: true
+#     registerWithEureka: true
+#     fetchRegistry: true
      serviceUrl:
-       defaultZone: http://user:${eureka.password}@discovery-service:8761/eureka/
+       defaultZone: http://localhost:8761/eureka/
      registryFetchIntervalSeconds: 5
+
+hystrix:
+  threadpool:
+    default:
+      # Maximum number of concurrent requests when using thread pools (Default: 10)
+      coreSize: 100
+      # Maximum LinkedBlockingQueue size - -1 for using SynchronousQueue (Default: -1)
+      maxQueueSize: -1
+      # Queue size rejection threshold (Default: 5)
+      queueSizeRejectionThreshold: 5
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 100
+      execution:
+        isolation:
+#          strategy: SEMAPHORE, no thread pool but timeout handling stops to work
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 120000
 
 tomcat:
   jdbc:
     pool:
-      url: jdbc:mysql://rhys-limited:3306/rhys_limited
+      url: jdbc:mysql://185.173.226.118:3306/rhys_limited
       username: root
-      password: rhys
+      password: 6bBNqpVqDe3FP79Y
       initial-size: 5
       test-on-borrow: true
       test-while-idle: true

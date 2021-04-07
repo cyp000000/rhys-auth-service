@@ -13,8 +13,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import za.co.infowarestudios.authentication.CustomUserDetailsService;
 
+import za.co.infowarestudios.authentication.CustomUserDetailsService;
 
 @Configuration
 @EnableAuthorizationServer
@@ -34,8 +34,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(AuthorizationServerSecurityConfigurer oauthServer)
-					throws Exception {
+	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 	}
 
@@ -46,38 +45,28 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		endpoints.tokenStore(tokenStore())
-						.authenticationManager(this.authenticationManager)
-						.userDetailsService(userDetailsService)
-						.accessTokenConverter(defaultAccessTokenConverter());
+		endpoints.tokenStore(tokenStore()).authenticationManager(this.authenticationManager)
+				.userDetailsService(userDetailsService).accessTokenConverter(defaultAccessTokenConverter());
 	}
-
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory()
-				.withClient("trust_client")
-				.resourceIds(new String[] {"user_api","product_api","transaction_api","notification_api"})
+		clients.inMemory().withClient("trust_client")
+				.resourceIds(new String[] { "user_api", "product_api", "transaction_api", "notification_api" })
 				.authorities("TRUSTED_CLIENT")
-				.scopes("login","read","register","shop","reset_password","deposit","transfer","notifications")
-				.authorizedGrantTypes("password","refresh_token","implicit","client_credentials")
-				.secret("IDdjJBJ09UOaqB2BXHCz19BWJvaCWRZCwWTbmrfojlE=")
-				.accessTokenValiditySeconds(60*10080)     //Valid for one week
-				.refreshTokenValiditySeconds(60*60*24)
-				.and()
-				.withClient("trust_web_admin")
-				.resourceIds(new String[] {"user_api","product_api","shop_api","transactions_api"})
+				.scopes("login", "read", "register", "shop", "reset_password", "deposit", "transfer", "notifications")
+				.authorizedGrantTypes("password", "refresh_token", "implicit", "client_credentials")
+				.secret("IDdjJBJ09UOaqB2BXHCz19BWJvaCWRZCwWTbmrfojlE=").accessTokenValiditySeconds(60 * 10080) // Valid
+																												// for
+																												// one
+																												// week
+				.refreshTokenValiditySeconds(60 * 60 * 24).and().withClient("trust_web_admin")
+				.resourceIds(new String[] { "user_api", "product_api", "shop_api", "transactions_api" })
 				.authorities("TRUSTED_WEB_ADMIN")
-				.scopes("login","read","register","balances","shop","deactivate_operator", "activate_operator")
-				.authorizedGrantTypes("client_credentials")
-				.secret("infoware-admin")
-				.accessTokenValiditySeconds(60*30)
-				.and()
-				.withClient("any_user")                   // Client that allows mobile user to check login details (must be initialized)
-				.resourceIds("user_api")
-				.authorities("UNKNOWN_USER")
-				.scopes("login","read","reset_password","shop")
-				.authorizedGrantTypes("client_credentials")
-				.secret("anyuser")
-				.accessTokenValiditySeconds(60*30);
+				.scopes("login", "read", "register", "balances", "shop", "deactivate_operator", "activate_operator")
+				.authorizedGrantTypes("client_credentials").secret("infoware-admin").accessTokenValiditySeconds(60 * 30)
+				.and().withClient("any_user") // Client that allows mobile user to check login details (must be
+												// initialized)
+				.resourceIds("user_api").authorities("UNKNOWN_USER").scopes("login", "read", "reset_password", "shop")
+				.authorizedGrantTypes("client_credentials").secret("anyuser").accessTokenValiditySeconds(60 * 30);
 	}
 }
